@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,26 +17,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Oys-YK-8f2">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hy8-Mw-JPC">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pQz-NQ-iIN">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="deviceCell" id="z9l-dC-bZS">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vuL-ES-3oo">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Oys-YK-8f2" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="HeR-dP-3PT"/>
-                            <constraint firstAttribute="bottom" secondItem="Oys-YK-8f2" secondAttribute="bottom" id="U6d-aX-LrN"/>
-                            <constraint firstItem="Oys-YK-8f2" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="rKT-RP-U2o"/>
-                            <constraint firstItem="Oys-YK-8f2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uzI-7I-CQC"/>
+                            <constraint firstItem="hy8-Mw-JPC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="02K-0A-QEi"/>
+                            <constraint firstAttribute="bottom" secondItem="hy8-Mw-JPC" secondAttribute="bottom" id="4gP-x9-dNX"/>
+                            <constraint firstItem="hy8-Mw-JPC" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="js2-pH-PZe"/>
+                            <constraint firstItem="hy8-Mw-JPC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="sxg-ji-TkJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Doorlock" id="htx-Bc-ZiB"/>
                     <connections>
-                        <outlet property="textView" destination="Oys-YK-8f2" id="eDw-Hu-RLj"/>
+                        <outlet property="collectionView" destination="hy8-Mw-JPC" id="OLM-XP-c5H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -62,9 +76,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

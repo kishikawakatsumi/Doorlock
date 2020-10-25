@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0878CA5D2545BD1600AE8DF0 /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0878CA5C2545BD1600AE8DF0 /* DeviceCell.xib */; };
+		0878CA612545BF1E00AE8DF0 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0878CA602545BF1E00AE8DF0 /* DeviceCell.swift */; };
+		0878CA652545C47000AE8DF0 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0878CA642545C47000AE8DF0 /* Device.swift */; };
+		0878CA692545CA8800AE8DF0 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0878CA682545CA8700AE8DF0 /* Status.swift */; };
 		088BD1082545902A0092AE7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD1072545902A0092AE7B /* AppDelegate.swift */; };
 		088BD10A2545902A0092AE7B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD1092545902A0092AE7B /* SceneDelegate.swift */; };
 		088BD10C2545902A0092AE7B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD10B2545902A0092AE7B /* ViewController.swift */; };
@@ -47,6 +51,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0878CA5C2545BD1600AE8DF0 /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
+		0878CA602545BF1E00AE8DF0 /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
+		0878CA642545C47000AE8DF0 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		0878CA682545CA8700AE8DF0 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		088BD1042545902A0092AE7B /* Doorlock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doorlock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		088BD1072545902A0092AE7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		088BD1092545902A0092AE7B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,9 +117,13 @@
 				088BD1072545902A0092AE7B /* AppDelegate.swift */,
 				088BD1092545902A0092AE7B /* SceneDelegate.swift */,
 				088BD10B2545902A0092AE7B /* ViewController.swift */,
+				0878CA602545BF1E00AE8DF0 /* DeviceCell.swift */,
+				0878CA642545C47000AE8DF0 /* Device.swift */,
+				0878CA682545CA8700AE8DF0 /* Status.swift */,
 				088BD10D2545902A0092AE7B /* Main.storyboard */,
-				088BD1102545902C0092AE7B /* Assets.xcassets */,
+				0878CA5C2545BD1600AE8DF0 /* DeviceCell.xib */,
 				088BD1122545902C0092AE7B /* LaunchScreen.storyboard */,
+				088BD1102545902C0092AE7B /* Assets.xcassets */,
 				088BD1152545902C0092AE7B /* Info.plist */,
 			);
 			path = Doorlock;
@@ -220,6 +232,7 @@
 				088BD1142545902C0092AE7B /* LaunchScreen.storyboard in Resources */,
 				088BD1112545902C0092AE7B /* Assets.xcassets in Resources */,
 				088BD10F2545902A0092AE7B /* Main.storyboard in Resources */,
+				0878CA5D2545BD1600AE8DF0 /* DeviceCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +253,10 @@
 			files = (
 				088BD10C2545902A0092AE7B /* ViewController.swift in Sources */,
 				088BD12E254590440092AE7B /* DoorlockWidget.intentdefinition in Sources */,
+				0878CA692545CA8800AE8DF0 /* Status.swift in Sources */,
 				088BD1082545902A0092AE7B /* AppDelegate.swift in Sources */,
+				0878CA652545C47000AE8DF0 /* Device.swift in Sources */,
+				0878CA612545BF1E00AE8DF0 /* DeviceCell.swift in Sources */,
 				088BD10A2545902A0092AE7B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,7 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -390,7 +406,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
