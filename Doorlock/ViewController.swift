@@ -50,70 +50,72 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
         }
 
-        WidgetCenter.shared.getCurrentConfigurations { [weak self] in
-            switch $0 {
-            case .success(let widgetInfo):
-                let session = URLSession(configuration: .ephemeral)
+        let userDefaults = UserDefaults(suiteName: appGroupID)
+        guard let APIKey = userDefaults?.string(forKey: "APIKey") else {
+            print("No APIKey found. Configure widget.")
+            return
+        }
 
-                widgetInfo.forEach { (widgetInfo) in
-                    guard
-                        let configuration = widgetInfo.configuration as? ConfigurationIntent,
-                        let APIKey = configuration.APIKey else {
-                        return
-                    }
+        let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: .main)
 
-                    guard let endpoint = URL(string: "https://api.candyhouse.co/public/sesames") else { return }
-                    var request = URLRequest(url: endpoint)
-                    request.httpMethod = "GET"
-                    request.addValue(APIKey, forHTTPHeaderField: "Authorization")
-                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let endpoint = URL(string: "https://api.candyhouse.co/public/sesames") else { return }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "GET"
+        request.addValue(APIKey, forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-                    let task = session.dataTask(with: request, completionHandler: { [weak self] (data, response, error) -> Void in
-                        guard
-                            let data = data,
-                            let devices = try? JSONDecoder().decode([Device].self, from: data) else { return }
-
-                        var snapshot = NSDiffableDataSourceSnapshot<Int, Device>()
-                        snapshot.appendSections([0])
-                        snapshot.appendItems(devices)
-                        self?.dataSource.apply(snapshot)
-
-                        devices.enumerated().forEach { (index, device) in
-                            let session = URLSession(configuration: .ephemeral)
-
-                            guard let endpoint = URL(string: "https://api.candyhouse.co/public/sesame/\(device.deviceID)") else { return }
-                            var request = URLRequest(url: endpoint)
-                            request.httpMethod = "GET"
-                            request.addValue(APIKey, forHTTPHeaderField: "Authorization")
-                            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-                            let task = session.dataTask(with: request, completionHandler: { [weak self] (data, response, error) -> Void in
-                                guard
-                                    let data = data,
-                                    let status = try? JSONDecoder().decode(Status.self, from: data) else { return }
-
-                                guard var snapshot = self?.dataSource.snapshot() else { return }
-                                var item = snapshot.itemIdentifiers(inSection: 0)[index]
-                                snapshot.deleteItems([item])
-                                item.status = status
-                                snapshot.appendItems([item])
-                                self?.dataSource.apply(snapshot)
-                            })
-                            task.resume()
-                            session.finishTasksAndInvalidate()
-                        }
-                    })
-                    task.resume()
-                }
-                session.finishTasksAndInvalidate()
-            case .failure(let error):
+        let task = session.dataTask(with: request, completionHandler: { [weak self] (data, response, error) -> Void in
+            defer { session.finishTasksAndInvalidate() }
+            
+            if let error = error {
                 let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
                     alert.dismiss(animated: true)
                 })
                 self?.present(alert, animated: true)
+                return
             }
-        }
+            guard let data = data else { return }
+            guard let devices = try? JSONDecoder().decode([Device].self, from: data) else {
+                if let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String],
+                   let error = errorResponse["error"] {
+                    let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                        alert.dismiss(animated: true)
+                    })
+                    self?.present(alert, animated: true)
+                }
+                return
+            }
+
+            var snapshot = NSDiffableDataSourceSnapshot<Int, Device>()
+            snapshot.appendSections([0])
+            snapshot.appendItems(devices)
+            self?.dataSource.apply(snapshot)
+
+            devices.enumerated().forEach { (index, device) in
+                guard let endpoint = URL(string: "https://api.candyhouse.co/public/sesame/\(device.deviceID)") else { return }
+                var request = URLRequest(url: endpoint)
+                request.httpMethod = "GET"
+                request.addValue(APIKey, forHTTPHeaderField: "Authorization")
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+                let task = session.dataTask(with: request, completionHandler: { [weak self] (data, response, error) -> Void in
+                    guard
+                        let data = data,
+                        let status = try? JSONDecoder().decode(Status.self, from: data) else { return }
+
+                    guard var snapshot = self?.dataSource.snapshot() else { return }
+                    var item = snapshot.itemIdentifiers(inSection: 0)[index]
+                    snapshot.deleteItems([item])
+                    item.status = status
+                    snapshot.appendItems([item])
+                    self?.dataSource.apply(snapshot)
+                })
+                task.resume()
+            }
+        })
+        task.resume()
 
         NotificationCenter.default.publisher(for: Notification.Name("DoorlockResponseReceivedNotification"))
             .receive(on: DispatchQueue.main)

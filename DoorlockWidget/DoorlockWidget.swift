@@ -38,7 +38,7 @@ struct DoorlockWidgetEntryView : View {
                 Spacer()
             }
             HStack {
-                Link(destination: Self.endpoint(APIKey: entry.configuration.APIKey ?? "", deviceID: entry.configuration.deviceID ?? "")) {
+                Link(destination: Self.endpoint(APIKey: entry.configuration.APIKey ?? "", deviceID: entry.configuration.deviceID ?? "", command: "lock")) {
                     Label(widgetFamily == WidgetFamily.systemSmall ? "" : "Lock", systemImage: "lock.fill")
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .font(.headline)
@@ -48,7 +48,7 @@ struct DoorlockWidgetEntryView : View {
                         .clipShape(Capsule())
                         .offset(CGSize(width: 0, height: 6))
                 }
-                Link(destination: Self.endpoint(APIKey: entry.configuration.APIKey ?? "", deviceID: entry.configuration.deviceID ?? "")) {
+                Link(destination: Self.endpoint(APIKey: entry.configuration.APIKey ?? "", deviceID: entry.configuration.deviceID ?? "", command: "unlock")) {
                     Label(widgetFamily == WidgetFamily.systemSmall ? "" : "Unlock", systemImage: "lock.open.fill")
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .font(.headline)
@@ -63,8 +63,8 @@ struct DoorlockWidgetEntryView : View {
         }
     }
 
-    private static func endpoint(APIKey: String, deviceID: String) -> URL {
-        URL(string: "com.kishikawakatsumi.Doorlock:///unlock?APIKey=\(APIKey)&deviceID=\(deviceID)")!
+    private static func endpoint(APIKey: String, deviceID: String, command: String) -> URL {
+        URL(string: "com.kishikawakatsumi.Doorlock:///\(command)?APIKey=\(APIKey)&deviceID=\(deviceID)")!
     }
 }
 

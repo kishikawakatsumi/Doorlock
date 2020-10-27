@@ -14,6 +14,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let APIKey = queryItems.first(where: { $0.name == "APIKey" })?.value,
             let deviceID = queryItems.first(where: { $0.name == "deviceID" })?.value else { return }
 
+        let userDefaults = UserDefaults(suiteName: appGroupID)
+        userDefaults?.set(APIKey, forKey: "APIKey")
+        userDefaults?.set(deviceID, forKey: "deviceID")
+
         switch url.path.dropFirst() {
         case "lock":
             Device.lock(APIKey: APIKey, deviceID: deviceID)

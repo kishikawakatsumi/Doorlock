@@ -36,14 +36,19 @@ struct Device: Codable, Hashable {
         let session = URLSession(configuration: .ephemeral)
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             var userInfo = [AnyHashable: Any]()
+            if let response = response as? HTTPURLResponse {
+                userInfo["response"] = response
+                print(response.statusCode)
+            }
             if let data = data {
                 userInfo["data"] = data
+                if let responseText = String(data: data, encoding: .utf8) {
+                    print(responseText)
+                }
             }
             if let error = error {
                 userInfo["error"] = error
-            }
-            if let response = response as? HTTPURLResponse {
-                userInfo["response"] = response
+                print(error.localizedDescription)
             }
             NotificationCenter.default.post(name: NSNotification.Name("DoorlockResponseReceivedNotification"), object: nil, userInfo: userInfo)
         })
