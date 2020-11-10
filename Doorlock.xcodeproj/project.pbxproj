@@ -13,7 +13,7 @@
 		0878CA692545CA8800AE8DF0 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0878CA682545CA8700AE8DF0 /* Status.swift */; };
 		088BD1082545902A0092AE7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD1072545902A0092AE7B /* AppDelegate.swift */; };
 		088BD10A2545902A0092AE7B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD1092545902A0092AE7B /* SceneDelegate.swift */; };
-		088BD10C2545902A0092AE7B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD10B2545902A0092AE7B /* ViewController.swift */; };
+		088BD10C2545902A0092AE7B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD10B2545902A0092AE7B /* MainViewController.swift */; };
 		088BD10F2545902A0092AE7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 088BD10D2545902A0092AE7B /* Main.storyboard */; };
 		088BD1112545902C0092AE7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088BD1102545902C0092AE7B /* Assets.xcassets */; };
 		088BD1142545902C0092AE7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 088BD1122545902C0092AE7B /* LaunchScreen.storyboard */; };
@@ -24,6 +24,8 @@
 		088BD12D254590440092AE7B /* DoorlockWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 088BD129254590420092AE7B /* DoorlockWidget.intentdefinition */; };
 		088BD12E254590440092AE7B /* DoorlockWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 088BD129254590420092AE7B /* DoorlockWidget.intentdefinition */; };
 		088BD131254590440092AE7B /* DoorlockWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 088BD120254590420092AE7B /* DoorlockWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		08AF2873255465C40095DCA3 /* ProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08AF2872255465C40095DCA3 /* ProgressViewController.xib */; };
+		08AF28792554666C0095DCA3 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AF28782554666C0095DCA3 /* ProgressViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +62,7 @@
 		088BD1042545902A0092AE7B /* Doorlock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doorlock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		088BD1072545902A0092AE7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		088BD1092545902A0092AE7B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		088BD10B2545902A0092AE7B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		088BD10B2545902A0092AE7B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		088BD10E2545902A0092AE7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		088BD1102545902C0092AE7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		088BD1132545902C0092AE7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -72,6 +74,8 @@
 		088BD129254590420092AE7B /* DoorlockWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = DoorlockWidget.intentdefinition; sourceTree = "<group>"; };
 		088BD12A254590440092AE7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		088BD12C254590440092AE7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08AF2872255465C40095DCA3 /* ProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressViewController.xib; sourceTree = "<group>"; };
+		08AF28782554666C0095DCA3 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +101,6 @@
 		088BD0FB2545902A0092AE7B = {
 			isa = PBXGroup;
 			children = (
-				0822CF902547961C001B3B5F /* DoorlockWidgetExtension.entitlements */,
 				088BD1062545902A0092AE7B /* Doorlock */,
 				088BD126254590420092AE7B /* DoorlockWidget */,
 				088BD121254590420092AE7B /* Frameworks */,
@@ -117,18 +120,20 @@
 		088BD1062545902A0092AE7B /* Doorlock */ = {
 			isa = PBXGroup;
 			children = (
-				0822CF8D254795FA001B3B5F /* Doorlock.entitlements */,
 				088BD1072545902A0092AE7B /* AppDelegate.swift */,
 				088BD1092545902A0092AE7B /* SceneDelegate.swift */,
-				088BD10B2545902A0092AE7B /* ViewController.swift */,
+				088BD10B2545902A0092AE7B /* MainViewController.swift */,
+				08AF28782554666C0095DCA3 /* ProgressViewController.swift */,
 				0878CA602545BF1E00AE8DF0 /* DeviceCell.swift */,
 				0878CA642545C47000AE8DF0 /* Device.swift */,
 				0878CA682545CA8700AE8DF0 /* Status.swift */,
 				088BD10D2545902A0092AE7B /* Main.storyboard */,
+				08AF2872255465C40095DCA3 /* ProgressViewController.xib */,
 				0878CA5C2545BD1600AE8DF0 /* DeviceCell.xib */,
 				088BD1122545902C0092AE7B /* LaunchScreen.storyboard */,
 				088BD1102545902C0092AE7B /* Assets.xcassets */,
 				088BD1152545902C0092AE7B /* Info.plist */,
+				0822CF8D254795FA001B3B5F /* Doorlock.entitlements */,
 			);
 			path = Doorlock;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 				088BD129254590420092AE7B /* DoorlockWidget.intentdefinition */,
 				088BD12A254590440092AE7B /* Assets.xcassets */,
 				088BD12C254590440092AE7B /* Info.plist */,
+				0822CF902547961C001B3B5F /* DoorlockWidgetExtension.entitlements */,
 			);
 			path = DoorlockWidget;
 			sourceTree = "<group>";
@@ -236,6 +242,7 @@
 				088BD1142545902C0092AE7B /* LaunchScreen.storyboard in Resources */,
 				088BD1112545902C0092AE7B /* Assets.xcassets in Resources */,
 				088BD10F2545902A0092AE7B /* Main.storyboard in Resources */,
+				08AF2873255465C40095DCA3 /* ProgressViewController.xib in Resources */,
 				0878CA5D2545BD1600AE8DF0 /* DeviceCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,9 +262,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				088BD10C2545902A0092AE7B /* ViewController.swift in Sources */,
+				088BD10C2545902A0092AE7B /* MainViewController.swift in Sources */,
 				088BD12E254590440092AE7B /* DoorlockWidget.intentdefinition in Sources */,
 				0878CA692545CA8800AE8DF0 /* Status.swift in Sources */,
+				08AF28792554666C0095DCA3 /* ProgressViewController.swift in Sources */,
 				088BD1082545902A0092AE7B /* AppDelegate.swift in Sources */,
 				0878CA652545C47000AE8DF0 /* Device.swift in Sources */,
 				0878CA612545BF1E00AE8DF0 /* DeviceCell.swift in Sources */,
@@ -467,7 +475,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = DoorlockWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = DoorlockWidget/DoorlockWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 27AEDK3C9F;
 				INFOPLIST_FILE = DoorlockWidget/Info.plist;
@@ -489,7 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = DoorlockWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = DoorlockWidget/DoorlockWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 27AEDK3C9F;
 				INFOPLIST_FILE = DoorlockWidget/Info.plist;

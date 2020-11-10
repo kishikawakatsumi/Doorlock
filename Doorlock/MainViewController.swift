@@ -2,7 +2,7 @@ import UIKit
 import Combine
 import WidgetKit
 
-class ViewController: UIViewController, UICollectionViewDelegate {
+class MainViewController: UIViewController, UICollectionViewDelegate {
     private var cancellables: Set<AnyCancellable> = []
 
     @IBOutlet private var collectionView: UICollectionView!
@@ -117,37 +117,50 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         })
         task.resume()
 
-        NotificationCenter.default.publisher(for: Notification.Name("DoorlockResponseReceivedNotification"))
+        NotificationCenter.default.publisher(for: Notification.Name("DoorlockRequestStartedNotification"))
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
-                guard let userInfo = $0.userInfo else { return }
-                if let response = userInfo["response"] as? HTTPURLResponse {
-                    if response.statusCode == 200 {
-                        return
-                    } else if let data = userInfo["data"] as? Data,
-                              let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String],
-                              let error = errorResponse["error"] {
-                        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+                guard let userInfo = $0.userInfo as? [String: String], let command = userInfo["command"] else { return }
+
+                let viewController = ProgressViewController(text: "\(command.capitalized)ing...")
+                self?.present(viewController, animated: true)
+            }
+            .store(in: &cancellables)
+
+        NotificationCenter.default.publisher(for: Notification.Name("DoorlockResponseReceivedNotification"))
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (notification) in
+                self?.dismiss(animated: true, completion: { [weak self] in
+                    guard let userInfo = notification.userInfo else { return }
+
+                    if let response = userInfo["response"] as? HTTPURLResponse {
+                        if response.statusCode == 200 {
+                            return
+                        } else if let data = userInfo["data"] as? Data,
+                                  let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String],
+                                  let error = errorResponse["error"] {
+                            let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                                alert.dismiss(animated: true)
+                            })
+                            self?.present(alert, animated: true)
+                            return
+                        }
+                    } else if let error = userInfo["error"] as? Error {
+                        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
                             alert.dismiss(animated: true)
                         })
                         self?.present(alert, animated: true)
                         return
                     }
-                } else if let error = userInfo["error"] as? Error {
-                    let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+
+                    let alert = UIAlertController(title: "Error", message: "Unknown error occurred.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
                         alert.dismiss(animated: true)
                     })
                     self?.present(alert, animated: true)
-                    return
-                }
-
-                let alert = UIAlertController(title: "Error", message: "Unknown error occurred.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-                    alert.dismiss(animated: true)
                 })
-                self?.present(alert, animated: true)
             }
             .store(in: &cancellables)
     }

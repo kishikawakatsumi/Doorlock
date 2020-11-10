@@ -32,6 +32,7 @@ struct Device: Codable, Hashable {
         ]
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
 
+        NotificationCenter.default.post(name: NSNotification.Name("DoorlockRequestStartedNotification"), object: nil, userInfo: parameters)
 
         let session = URLSession(configuration: .ephemeral)
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
