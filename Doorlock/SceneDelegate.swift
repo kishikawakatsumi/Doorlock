@@ -15,17 +15,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let url = URLContexts.first?.url,
             let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems,
             let APIKey = queryItems.first(where: { $0.name == "APIKey" })?.value,
+            let secretKey = queryItems.first(where: { $0.name == "secretKey" })?.value,
             let deviceID = queryItems.first(where: { $0.name == "deviceID" })?.value else { return }
 
         let userDefaults = UserDefaults(suiteName: appGroupID)
         userDefaults?.set(APIKey, forKey: "APIKey")
+        userDefaults?.set(secretKey, forKey: "secretKey")
         userDefaults?.set(deviceID, forKey: "deviceID")
 
         switch url.path.dropFirst() {
         case "lock":
-            Device.lock(APIKey: APIKey, deviceID: deviceID)
+            Device.lock(APIKey: APIKey, secretKey: secretKey, deviceID: deviceID)
         case "unlock":
-            Device.unlock(APIKey: APIKey, deviceID: deviceID)
+            Device.unlock(APIKey: APIKey, secretKey: secretKey, deviceID: deviceID)
         default:
             break
         }

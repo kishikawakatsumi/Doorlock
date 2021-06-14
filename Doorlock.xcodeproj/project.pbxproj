@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		0878CA612545BF1E00AE8DF0 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0878CA602545BF1E00AE8DF0 /* DeviceCell.swift */; };
 		0878CA652545C47000AE8DF0 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0878CA642545C47000AE8DF0 /* Device.swift */; };
 		0878CA692545CA8800AE8DF0 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0878CA682545CA8700AE8DF0 /* Status.swift */; };
+		088516D22677F6F000A66458 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 088516D12677F6F000A66458 /* CryptoSwift */; };
 		088BD1082545902A0092AE7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD1072545902A0092AE7B /* AppDelegate.swift */; };
 		088BD10A2545902A0092AE7B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD1092545902A0092AE7B /* SceneDelegate.swift */; };
 		088BD10C2545902A0092AE7B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD10B2545902A0092AE7B /* MainViewController.swift */; };
@@ -83,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				088516D22677F6F000A66458 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +179,9 @@
 				088BD130254590440092AE7B /* PBXTargetDependency */,
 			);
 			name = Doorlock;
+			packageProductDependencies = (
+				088516D12677F6F000A66458 /* CryptoSwift */,
+			);
 			productName = Doorlock;
 			productReference = 088BD1042545902A0092AE7B /* Doorlock.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +229,9 @@
 				Base,
 			);
 			mainGroup = 088BD0FB2545902A0092AE7B;
+			packageReferences = (
+				088516D02677F6F000A66458 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+			);
 			productRefGroup = 088BD1052545902A0092AE7B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -545,6 +553,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		088516D02677F6F000A66458 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		088516D12677F6F000A66458 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 088516D02677F6F000A66458 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 088BD0FC2545902A0092AE7B /* Project object */;
 }

@@ -1,4 +1,5 @@
 import Foundation
+import CryptoSwift
 
 struct Device: Codable, Hashable {
     let deviceID: String
@@ -12,23 +13,34 @@ struct Device: Codable, Hashable {
         case nickname
     }
 
-    static func lock(APIKey: String, deviceID: String) {
-        doCommand(APIKey: APIKey, deviceID: deviceID, command: "lock")
+    static func lock(APIKey: String, secretKey: String, deviceID: String) {
+        doCommand(APIKey: APIKey, secretKey: secretKey, deviceID: deviceID, command: "lock")
     }
 
-    static func unlock(APIKey: String, deviceID: String) {
-        doCommand(APIKey: APIKey, deviceID: deviceID, command: "unlock")
+    static func unlock(APIKey: String, secretKey: String, deviceID: String) {
+        doCommand(APIKey: APIKey, secretKey: secretKey, deviceID: deviceID, command: "unlock")
     }
 
-    static private func doCommand(APIKey: String, deviceID: String, command: String) {
-        guard let endpoint = URL(string: "https://api.candyhouse.co/public/sesame/\(deviceID)") else { return }
+    static private func doCommand(APIKey: String, secretKey: String, deviceID: String, command: String) {
+        guard let endpoint = URL(string: "https://app.candyhouse.co/api/sesame2/\(deviceID)/cmd") else { return }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "POST"
-        request.addValue(APIKey, forHTTPHeaderField: "Authorization")
+        request.addValue(APIKey, forHTTPHeaderField: "x-api-key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
+        guard let cmac = try? CMAC(key: Array<UInt8>(hex: secretKey)) else { return }
+
+        let timestamp = Int32(Date().timeIntervalSince1970)
+        let message = withUnsafeBytes(of: timestamp.littleEndian, Array.init).dropFirst()
+        guard let digest = try? cmac.authenticate([UInt8](message)) else {
+            return
+        }
+        let sign = digest.toHexString()
+
         let parameters: [String : Any] = [
-            "command": command,
+            "cmd": command == "lock" ? 82 : 83, // 88/82/83 = toggle/lock/unlock
+            "history": "(Web API)".data(using: .utf8)!.base64EncodedString(),
+            "sign": sign
         ]
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
 
@@ -36,12 +48,11 @@ struct Device: Codable, Hashable {
             NotificationCenter.default.post(name: NSNotification.Name("DoorlockRequestStartedNotification"), object: nil, userInfo: parameters)
         }
 
-        let session = URLSession(configuration: .ephemeral)
+        let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             var userInfo = [AnyHashable: Any]()
             if let response = response as? HTTPURLResponse {
                 userInfo["response"] = response
-                print(response.statusCode)
             }
             if let data = data {
                 userInfo["data"] = data
@@ -58,6 +69,5 @@ struct Device: Codable, Hashable {
             }
         })
         task.resume()
-        session.finishTasksAndInvalidate()
     }
 }
