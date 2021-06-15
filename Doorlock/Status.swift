@@ -1,11 +1,9 @@
 import Foundation
 
 struct Status: Codable, Hashable {
-    let locked: Bool
-    let battery: Int
-    let responsive: Bool
-
-    var statusText: String {
-        "\(locked ? "locked" : "unlocked")"
-    }
+    let batteryPercentage: Int
+    let batteryVoltage: Double
+    let position: Int
+    let CHSesame2Status: String
+    let timestamp: Int
 }

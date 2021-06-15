@@ -1,18 +1,7 @@
 import Foundation
 import CryptoSwift
 
-struct Device: Codable, Hashable {
-    let deviceID: String
-    let serial: String
-    let nickname: String
-    var status: Status?
-
-    enum CodingKeys: String, CodingKey {
-        case deviceID = "device_id"
-        case serial
-        case nickname
-    }
-
+struct Device {
     static func lock(APIKey: String, secretKey: String, deviceID: String) {
         doCommand(APIKey: APIKey, secretKey: secretKey, deviceID: deviceID, command: "lock")
     }
@@ -44,9 +33,7 @@ struct Device: Codable, Hashable {
         ]
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
 
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: NSNotification.Name("DoorlockRequestStartedNotification"), object: nil, userInfo: parameters)
-        }
+        NotificationCenter.default.post(name: NSNotification.Name("DoorlockRequestStartedNotification"), object: nil, userInfo: ["command": command])
 
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
@@ -64,9 +51,8 @@ struct Device: Codable, Hashable {
                 userInfo["error"] = error
                 print(error.localizedDescription)
             }
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: NSNotification.Name("DoorlockResponseReceivedNotification"), object: nil, userInfo: userInfo)
-            }
+
+            NotificationCenter.default.post(name: NSNotification.Name("DoorlockResponseReceivedNotification"), object: nil, userInfo: userInfo)
         })
         task.resume()
     }

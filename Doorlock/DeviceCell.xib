@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -12,121 +12,106 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="O4o-cK-fdt" customClass="DeviceCell" customModule="Doorlock" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dxB-1f-YIv">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETg-9S-iLz">
-                        <rect key="frame" x="20" y="20" width="79.5" height="20.5"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yKE-qj-1fo">
-                        <rect key="frame" x="20" y="48.5" width="270" height="13.5"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbx-Cb-EFc" customClass="Button" customModule="Doorlock" customModuleProvider="target">
-                        <rect key="frame" x="350" y="33" width="44" height="44"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="12w-5m-B6R"/>
-                            <constraint firstAttribute="width" constant="44" id="R6H-S1-Kug"/>
-                        </constraints>
-                        <color key="tintColor" systemColor="labelColor"/>
-                        <state key="normal" image="lock.open.fill" catalog="system"/>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1x-7f-e35" customClass="Button" customModule="Doorlock" customModuleProvider="target">
-                        <rect key="frame" x="298" y="33" width="44" height="44"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="SGm-KC-HbP"/>
-                            <constraint firstAttribute="width" constant="44" id="YS7-FS-ulu"/>
-                        </constraints>
-                        <color key="tintColor" systemColor="labelColor"/>
-                        <state key="normal" image="lock.fill" catalog="system"/>
-                    </button>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Vfu-bl-23r">
-                        <rect key="frame" x="20" y="70" width="149.5" height="20"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qCO-rq-GQm">
+                        <rect key="frame" x="20" y="21.5" width="87" height="41.5"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="XDl-El-ijv">
-                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                            </activityIndicatorView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9yI-un-TyR">
-                                <rect key="frame" x="28" y="0.0" width="121.5" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yKE-qj-1fo">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="13.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Vfu-bl-23r">
+                                <rect key="frame" x="0.0" y="21.5" width="87" height="20"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock.open.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="r6Y-Td-Fsh">
-                                        <rect key="frame" x="0.0" y="0.5" width="20" height="18.5"/>
-                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="Y4t-sJ-7Hw"/>
-                                            <constraint firstAttribute="height" constant="20" id="dQq-Kz-OVx"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bolt.slash.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dqw-6i-auU">
-                                        <rect key="frame" x="28" y="-1" width="20" height="21.5"/>
-                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="7YU-50-Zh2"/>
-                                            <constraint firstAttribute="width" constant="20" id="Y0Q-r6-SCO"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery.100" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="H2G-5L-6Wi">
-                                        <rect key="frame" x="56" y="3" width="20" height="14"/>
-                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="OfP-VS-tLS"/>
-                                            <constraint firstAttribute="width" constant="20" id="c6A-Iz-pfB"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNG-PH-Fgs">
-                                        <rect key="frame" x="84" y="0.0" width="37.5" height="20"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9yI-un-TyR">
+                                        <rect key="frame" x="0.0" y="0.0" width="87" height="20"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock.open.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="r6Y-Td-Fsh">
+                                                <rect key="frame" x="0.0" y="0.5" width="20" height="18.5"/>
+                                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="Y4t-sJ-7Hw"/>
+                                                    <constraint firstAttribute="height" constant="20" id="dQq-Kz-OVx"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery.100" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="H2G-5L-6Wi">
+                                                <rect key="frame" x="28" y="3" width="20" height="14"/>
+                                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="OfP-VS-tLS"/>
+                                                    <constraint firstAttribute="width" constant="20" id="c6A-Iz-pfB"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNG-PH-Fgs">
+                                                <rect key="frame" x="56" y="0.0" width="31" height="20"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hyD-3x-OsK">
+                        <rect key="frame" x="298" y="20" width="96" height="44"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1x-7f-e35" customClass="Button" customModule="Doorlock" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="SGm-KC-HbP"/>
+                                    <constraint firstAttribute="width" constant="44" id="YS7-FS-ulu"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" image="lock.fill" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbx-Cb-EFc" customClass="Button" customModule="Doorlock" customModuleProvider="target">
+                                <rect key="frame" x="52" y="0.0" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="12w-5m-B6R"/>
+                                    <constraint firstAttribute="width" constant="44" id="R6H-S1-Kug"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" image="lock.open.fill" catalog="system"/>
+                            </button>
                         </subviews>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="jbx-Cb-EFc" secondAttribute="trailing" constant="20" symbolic="YES" id="Cvl-8j-NkE"/>
-                    <constraint firstItem="jbx-Cb-EFc" firstAttribute="leading" secondItem="V1x-7f-e35" secondAttribute="trailing" constant="8" symbolic="YES" id="F2a-4x-9G6"/>
-                    <constraint firstItem="yKE-qj-1fo" firstAttribute="leading" secondItem="dxB-1f-YIv" secondAttribute="leading" constant="20" symbolic="YES" id="IfB-OL-Ac1"/>
-                    <constraint firstItem="yKE-qj-1fo" firstAttribute="top" secondItem="ETg-9S-iLz" secondAttribute="bottom" constant="8" symbolic="YES" id="Imd-Vm-6dh"/>
-                    <constraint firstItem="V1x-7f-e35" firstAttribute="leading" secondItem="yKE-qj-1fo" secondAttribute="trailing" constant="8" symbolic="YES" id="NcT-ns-9dh"/>
-                    <constraint firstItem="Vfu-bl-23r" firstAttribute="top" secondItem="yKE-qj-1fo" secondAttribute="bottom" constant="8" symbolic="YES" id="SRe-Y1-4SO"/>
-                    <constraint firstItem="jbx-Cb-EFc" firstAttribute="centerY" secondItem="dxB-1f-YIv" secondAttribute="centerY" id="YEr-4w-L0X"/>
-                    <constraint firstItem="jbx-Cb-EFc" firstAttribute="centerY" secondItem="V1x-7f-e35" secondAttribute="centerY" id="ZdC-2S-SfT"/>
-                    <constraint firstItem="ETg-9S-iLz" firstAttribute="leading" secondItem="dxB-1f-YIv" secondAttribute="leading" constant="20" symbolic="YES" id="a8w-vy-Bvf"/>
-                    <constraint firstItem="Vfu-bl-23r" firstAttribute="leading" secondItem="dxB-1f-YIv" secondAttribute="leading" constant="20" symbolic="YES" id="gil-71-RI3"/>
-                    <constraint firstItem="ETg-9S-iLz" firstAttribute="top" secondItem="dxB-1f-YIv" secondAttribute="top" constant="20" symbolic="YES" id="xsR-7F-FUc"/>
-                    <constraint firstAttribute="bottom" secondItem="Vfu-bl-23r" secondAttribute="bottom" priority="750" constant="20" symbolic="YES" id="zhO-Mz-6E4"/>
+                    <constraint firstItem="qCO-rq-GQm" firstAttribute="centerY" secondItem="hyD-3x-OsK" secondAttribute="centerY" id="8GU-1u-qth"/>
+                    <constraint firstItem="qCO-rq-GQm" firstAttribute="leading" secondItem="dxB-1f-YIv" secondAttribute="leading" constant="20" symbolic="YES" id="DIf-29-0lG"/>
+                    <constraint firstItem="qCO-rq-GQm" firstAttribute="top" secondItem="dxB-1f-YIv" secondAttribute="top" priority="750" constant="21.5" id="LNL-fX-hHv"/>
+                    <constraint firstItem="hyD-3x-OsK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qCO-rq-GQm" secondAttribute="trailing" constant="20" id="LVq-ec-tb5"/>
+                    <constraint firstAttribute="trailing" secondItem="hyD-3x-OsK" secondAttribute="trailing" constant="20" symbolic="YES" id="e6i-K3-d5c"/>
+                    <constraint firstItem="hyD-3x-OsK" firstAttribute="top" secondItem="dxB-1f-YIv" secondAttribute="top" constant="20" symbolic="YES" id="ko1-jT-3iA"/>
+                    <constraint firstAttribute="bottom" secondItem="hyD-3x-OsK" secondAttribute="bottom" constant="20" symbolic="YES" id="pIo-D0-yiE"/>
+                    <constraint firstItem="hyD-3x-OsK" firstAttribute="centerY" secondItem="dxB-1f-YIv" secondAttribute="centerY" id="qhJ-el-bTn"/>
+                    <constraint firstAttribute="bottom" secondItem="qCO-rq-GQm" secondAttribute="bottom" priority="750" constant="21" id="tJY-X3-Xep"/>
                 </constraints>
             </collectionViewCellContentView>
-            <size key="customSize" width="545" height="115"/>
+            <size key="customSize" width="545" height="88"/>
             <connections>
                 <outlet property="batteryStatusImage" destination="H2G-5L-6Wi" id="CdH-89-HrD"/>
                 <outlet property="batteryStatusLabel" destination="WNG-PH-Fgs" id="peT-Ma-g3q"/>
                 <outlet property="deviceIDLabel" destination="yKE-qj-1fo" id="fCt-Ys-sMe"/>
                 <outlet property="lockButton" destination="V1x-7f-e35" id="tnQ-Rw-sZW"/>
                 <outlet property="lockStatusImage" destination="r6Y-Td-Fsh" id="A2E-T6-Tn1"/>
-                <outlet property="nicknameLabel" destination="ETg-9S-iLz" id="TYb-cp-B8r"/>
-                <outlet property="responsiveStatusImage" destination="dqw-6i-auU" id="vB6-qA-Ebh"/>
-                <outlet property="statusSpinner" destination="XDl-El-ijv" id="x0X-BK-Iem"/>
-                <outlet property="statusView" destination="9yI-un-TyR" id="F51-4p-1RK"/>
                 <outlet property="unlockButton" destination="jbx-Cb-EFc" id="RqQ-Du-9BL"/>
             </connections>
-            <point key="canvasLocation" x="478.26086956521743" y="9.7098214285714288"/>
+            <point key="canvasLocation" x="478.26086956521743" y="0.33482142857142855"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="battery.100" catalog="system" width="128" height="61"/>
-        <image name="bolt.slash.fill" catalog="system" width="98" height="128"/>
         <image name="lock.fill" catalog="system" width="128" height="128"/>
         <image name="lock.open.fill" catalog="system" width="128" height="112"/>
         <systemColor name="labelColor">

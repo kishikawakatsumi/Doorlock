@@ -1,44 +1,29 @@
 import UIKit
 
 final class DeviceCell: UICollectionViewListCell {
-    var nickname: String = "" {
-        didSet { nicknameLabel.text = nickname }
-    }
     var deviceID: String = "" {
         didSet { deviceIDLabel.text = deviceID }
     }
-    var status: Status? {
+    var batteryPercentage: Int = 100 {
         didSet {
-            guard let status = status else {
-                statusSpinner.isHidden = false
-                statusSpinner.startAnimating()
-                statusView.isHidden = true
-                return
-            }
-            statusSpinner.isHidden = true
-            statusView.isHidden = false
-
-            lockStatusImage.image = status.locked ? UIImage(systemName: "lock.fill") : UIImage(systemName: "lock.open.fill")
-            responsiveStatusImage.image = status.responsive ? UIImage(systemName: "bolt.fill") : UIImage(systemName: "bolt.slash.fill")
-            responsiveStatusImage.image = status.responsive ? UIImage(systemName: "bolt.fill") : UIImage(systemName: "bolt.slash.fill")
-            batteryStatusImage.image = status.battery > 25 ? UIImage(systemName: "battery.100") : status.battery > 0 ? UIImage(systemName: "battery.25") : UIImage(systemName: "battery.0")
-            batteryStatusLabel.text = "\(status.battery)%"
+            batteryStatusImage.image = batteryPercentage > 25 ? UIImage(systemName: "battery.100") : batteryPercentage > 0 ? UIImage(systemName: "battery.25") : UIImage(systemName: "battery.0")
+            batteryStatusLabel.text = "\(batteryPercentage)%"
+        }
+    }
+    var status: String = "locked" {
+        didSet {
+            lockStatusImage.image = status == "locked" ? UIImage(systemName: "lock.fill") : UIImage(systemName: "lock.open.fill")
         }
     }
 
     var onLockButtonTapped: () -> Void = {}
     var onUnlockButtonTapped: () -> Void = {}
 
-    @IBOutlet private var nicknameLabel: UILabel!
     @IBOutlet private var deviceIDLabel: UILabel!
     @IBOutlet private var lockButton: UIButton!
     @IBOutlet private var unlockButton: UIButton!
 
-    @IBOutlet private var statusView: UIStackView!
-    @IBOutlet private var statusSpinner: UIActivityIndicatorView!
-
     @IBOutlet private var lockStatusImage: UIImageView!
-    @IBOutlet private var responsiveStatusImage: UIImageView!
     @IBOutlet private var batteryStatusImage: UIImageView!
     @IBOutlet private var batteryStatusLabel: UILabel!
 
