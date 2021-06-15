@@ -12,6 +12,7 @@
 		0878CA652545C47000AE8DF0 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0878CA642545C47000AE8DF0 /* Device.swift */; };
 		0878CA692545CA8800AE8DF0 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0878CA682545CA8700AE8DF0 /* Status.swift */; };
 		088516D22677F6F000A66458 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 088516D12677F6F000A66458 /* CryptoSwift */; };
+		088516D52678DA3100A66458 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 088516D42678DA3100A66458 /* KeychainAccess */; };
 		088BD1082545902A0092AE7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD1072545902A0092AE7B /* AppDelegate.swift */; };
 		088BD10A2545902A0092AE7B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD1092545902A0092AE7B /* SceneDelegate.swift */; };
 		088BD10C2545902A0092AE7B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BD10B2545902A0092AE7B /* MainViewController.swift */; };
@@ -84,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				088516D52678DA3100A66458 /* KeychainAccess in Frameworks */,
 				088516D22677F6F000A66458 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,6 +183,7 @@
 			name = Doorlock;
 			packageProductDependencies = (
 				088516D12677F6F000A66458 /* CryptoSwift */,
+				088516D42678DA3100A66458 /* KeychainAccess */,
 			);
 			productName = Doorlock;
 			productReference = 088BD1042545902A0092AE7B /* Doorlock.app */;
@@ -199,6 +202,8 @@
 			dependencies = (
 			);
 			name = DoorlockWidgetExtension;
+			packageProductDependencies = (
+			);
 			productName = DoorlockWidgetExtension;
 			productReference = 088BD120254590420092AE7B /* DoorlockWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -231,6 +236,7 @@
 			mainGroup = 088BD0FB2545902A0092AE7B;
 			packageReferences = (
 				088516D02677F6F000A66458 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				088516D32678DA3100A66458 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 088BD1052545902A0092AE7B /* Products */;
 			projectDirPath = "";
@@ -563,6 +569,14 @@
 				minimumVersion = 1.4.0;
 			};
 		};
+		088516D32678DA3100A66458 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -570,6 +584,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 088516D02677F6F000A66458 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
+		};
+		088516D42678DA3100A66458 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 088516D32678DA3100A66458 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

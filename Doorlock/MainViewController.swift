@@ -1,6 +1,7 @@
 import UIKit
 import Combine
 import WidgetKit
+import KeychainAccess
 
 class MainViewController: UIViewController, UICollectionViewDelegate {
     private var cancellables: Set<AnyCancellable> = []
@@ -11,9 +12,10 @@ class MainViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let keychain = Keychain(service: "com.kishikawakatsumi.Doorlock", accessGroup: accessGroup);
+
         let cellRegistration = UICollectionView.CellRegistration<DeviceCell, Status>(cellNib: UINib(nibName: "DeviceCell", bundle: nil)) { (cell, indexPath, item) in
-            let userDefaults = UserDefaults(suiteName: appGroupID)
-            cell.deviceID = userDefaults?.string(forKey: "deviceID") ?? "N/A"
+            cell.deviceID = keychain["deviceID"] ?? "N/A"
             cell.status = item.CHSesame2Status
             cell.batteryPercentage = item.batteryPercentage
 
@@ -106,9 +108,9 @@ class MainViewController: UIViewController, UICollectionViewDelegate {
     }
 
     private func refreshStatus() {
-        let userDefaults = UserDefaults(suiteName: appGroupID)
-        guard let APIKey = userDefaults?.string(forKey: "APIKey") else { return }
-        guard let deviceID = userDefaults?.string(forKey: "deviceID") else { return }
+        let keychain = Keychain(service: "com.kishikawakatsumi.Doorlock", accessGroup: accessGroup)
+        guard let APIKey = keychain["APIKey"] else { return }
+        guard let deviceID = keychain["deviceID"] else { return }
 
         let session = URLSession.shared
 

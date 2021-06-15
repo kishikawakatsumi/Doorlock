@@ -1,4 +1,5 @@
 import UIKit
+import KeychainAccess
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -18,10 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let secretKey = queryItems.first(where: { $0.name == "secretKey" })?.value,
             let deviceID = queryItems.first(where: { $0.name == "deviceID" })?.value else { return }
 
-        let userDefaults = UserDefaults(suiteName: appGroupID)
-        userDefaults?.set(APIKey, forKey: "APIKey")
-        userDefaults?.set(secretKey, forKey: "secretKey")
-        userDefaults?.set(deviceID, forKey: "deviceID")
+        let keychain = Keychain(service: "com.kishikawakatsumi.Doorlock", accessGroup: accessGroup)
+        keychain["APIKey"] = APIKey
+        keychain["secretKey"] = secretKey
+        keychain["deviceID"] = deviceID
 
         switch url.path.dropFirst() {
         case "lock":
