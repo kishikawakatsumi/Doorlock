@@ -14,8 +14,8 @@ class MainViewController: UIViewController, UICollectionViewDelegate {
         let cellRegistration = UICollectionView.CellRegistration<DeviceCell, Status>(cellNib: UINib(nibName: "DeviceCell", bundle: nil)) { (cell, indexPath, item) in
             let userDefaults = UserDefaults(suiteName: appGroupID)
             cell.deviceID = userDefaults?.string(forKey: "deviceID") ?? "N/A"
-            cell.batteryPercentage = item.batteryPercentage
             cell.status = item.CHSesame2Status
+            cell.batteryPercentage = item.batteryPercentage
 
             cell.onLockButtonTapped = {
                 WidgetCenter.shared.getCurrentConfigurations {
@@ -50,6 +50,12 @@ class MainViewController: UIViewController, UICollectionViewDelegate {
         }
 
         refreshStatus()
+        Timer.publish(every: 2, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                self?.refreshStatus()
+            }
+            .store(in: &cancellables)
 
         NotificationCenter.default.publisher(for: Notification.Name("DoorlockRequestStartedNotification"))
             .receive(on: DispatchQueue.main)
@@ -95,10 +101,6 @@ class MainViewController: UIViewController, UICollectionViewDelegate {
                     })
                     self?.present(alert, animated: true)
                 })
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    self?.refreshStatus()
-                }
             }
             .store(in: &cancellables)
     }

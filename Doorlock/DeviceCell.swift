@@ -28,6 +28,21 @@ final class DeviceCell: UICollectionViewListCell {
     @IBOutlet private var batteryStatusLabel: UILabel!
 
     override func awakeFromNib() {
+        if let font = deviceIDLabel.font {
+            let features: [[UIFontDescriptor.FeatureKey: Int]] =
+                [[.featureIdentifier: kNumberSpacingType, .typeIdentifier: kMonospacedNumbersSelector]]
+            let fontDescriptor = font.fontDescriptor
+            fontDescriptor.addingAttributes([.featureSettings: [features]])
+            deviceIDLabel.font = UIFont(descriptor: fontDescriptor, size: 0)
+        }
+        if let font = batteryStatusLabel.font {
+            let features: [[UIFontDescriptor.FeatureKey: Int]] =
+                [[.featureIdentifier: kNumberSpacingType, .typeIdentifier: kMonospacedNumbersSelector]]
+            let fontDescriptor = font.fontDescriptor
+            fontDescriptor.addingAttributes([.featureSettings: [features]])
+            batteryStatusLabel.font = UIFont(descriptor: fontDescriptor, size: 0)
+        }
+
         lockButton.layer.borderWidth = 1
         lockButton.layer.borderColor = UIColor.label.cgColor
         lockButton.layer.cornerRadius = lockButton.bounds.height / 2
