@@ -32,8 +32,10 @@ struct DoorlockWidgetEntryView : View {
         ZStack {
             VStack {
                 Image("key-solid")
+                    .renderingMode(.template)
                     .resizable()
                     .frame(width: 20, height: 20)
+                    .foregroundColor(Color(UIColor.label))
                     .padding()
                 Spacer()
             }
@@ -44,7 +46,7 @@ struct DoorlockWidgetEntryView : View {
                         .font(.headline)
                         .padding(widgetFamily == WidgetFamily.systemSmall ? .trailing : .all, widgetFamily == WidgetFamily.systemSmall ? -8 : 16)
                         .padding(widgetFamily == WidgetFamily.systemSmall ? .all : .all, widgetFamily == WidgetFamily.systemSmall ? 16 : 0)
-                        .background(Color.gray.opacity(0.2))
+                        .background(Color(UIColor.systemFill))
                         .clipShape(Capsule())
                         .offset(CGSize(width: 0, height: 6))
                 }
@@ -54,7 +56,7 @@ struct DoorlockWidgetEntryView : View {
                         .font(.headline)
                         .padding(widgetFamily == WidgetFamily.systemSmall ? .trailing : .all, widgetFamily == WidgetFamily.systemSmall ? -8 : 16)
                         .padding(widgetFamily == WidgetFamily.systemSmall ? .all : .all, widgetFamily == WidgetFamily.systemSmall ? 16 : 0)
-                        .background(Color.gray.opacity(0.2))
+                        .background(Color(UIColor.systemFill))
                         .clipShape(Capsule())
                         .offset(CGSize(width: 0, height: 6))
                 }
