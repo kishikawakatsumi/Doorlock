@@ -121,31 +121,36 @@ class MainViewController: UIViewController, UICollectionViewDelegate {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let task = session.dataTask(with: request, completionHandler: { [weak self] (data, response, error) -> Void in
-            if let error = error {
-                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-                    alert.dismiss(animated: true)
-                })
-                self?.present(alert, animated: true)
-                return
-            }
-            guard let data = data else { return }
-            guard let status = try? JSONDecoder().decode(Status.self, from: data) else {
-                if let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String],
-                   let error = errorResponse["error"] {
-                    let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+            guard let self = self else { return }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+
+                if let error = error {
+                    let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
                         alert.dismiss(animated: true)
                     })
-                    self?.present(alert, animated: true)
+                    self.present(alert, animated: true)
+                    return
                 }
-                return
-            }
+                guard let data = data else { return }
+                guard let status = try? JSONDecoder().decode(Status.self, from: data) else {
+                    if let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String],
+                       let error = errorResponse["error"] {
+                        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                            alert.dismiss(animated: true)
+                        })
+                        self.present(alert, animated: true)
+                    }
+                    return
+                }
 
-            var snapshot = NSDiffableDataSourceSnapshot<Int, Status>()
-            snapshot.appendSections([0])
-            snapshot.appendItems([status])
-            self?.dataSource.apply(snapshot)
+                var snapshot = NSDiffableDataSourceSnapshot<Int, Status>()
+                snapshot.appendSections([0])
+                snapshot.appendItems([status])
+                self.dataSource.apply(snapshot)
+            }
         })
         task.resume()
     }
